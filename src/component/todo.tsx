@@ -1,6 +1,7 @@
-import { title } from "process"
 import { useState } from "react"
+import Line from "./Line"
 import Pages from "./Pages"
+const DoneArr: any[] = []
 
 function Todo() {
 
@@ -18,12 +19,15 @@ function Todo() {
         setTitle1(newArray1)
     }
 
-    const DoneArr: any[] = []
     function DonE(y: any) {
         const newArray2 = [...Title1]
         DoneArr.push(newArray2[y])
         del(y)
     }
+
+    const Donne = DoneArr.map((data,index) => {
+        return <Line key = {index} Data = {data}></Line>
+    }).reverse()
 
     const Showpage = Title1.map((data, index) => {
         return <Pages key={index} Data={data} Dels={del} DoNe={DonE} index={index} />
@@ -45,15 +49,9 @@ function Todo() {
 
     return (
         <div className='mx-auto max-w-4xl'>
-
-            {/* task input and add button */}
             <div className='flex space-x-1'>
-                <input
-                    value={Title2}
-                    onChange={(Event) => setTitle2(Event.target.value)}
-                    className='border border-gray-400 w-full text-2xl'
-                    onKeyDown={onKeyDownCallback} > </input>
-                <button className='border border-gray-400 w-8 font-bold'
+                <input className='border border-gray-400 w-full text-2xl' value={Title2} onChange={(Event) => setTitle2(Event.target.value)} onKeyDown={onKeyDownCallback}></input>
+                <button type='submit' className='border border-gray-400 w-8 font-bold'
                     onClick={ev => {
                         ev.preventDefault()
                         if (Title2 != "") {
@@ -62,12 +60,14 @@ function Todo() {
                         } else {
                             alert("Task cannot be empty")
                         }
-                    }}
+                    }
+                }
                 >+</button>
             </div>
             {Showpage}
-            {/* tasks section */}
-        </div>);
+            {Donne}
+        </div>
+    );
 }
 
-export default Todo
+export default Todo;

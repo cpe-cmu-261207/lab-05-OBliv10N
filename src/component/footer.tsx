@@ -1,9 +1,9 @@
-function Footer (){
+function Footer() {
     return (
         <div>
-        {/* footer section */}
-        <p className='text-center text-gray-400'> ... </p>
-      </div>);
+            <p className='text-center text-gray-400'> copy right ©</p>
+        </div>
+    );
 }
 
-export default Footer 
+export default Footer;
